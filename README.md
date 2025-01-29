@@ -273,3 +273,78 @@ Ensure role-based access control (RBAC) and Atttribute bases access control ( AB
 5. Rate Limiting and Throttling
    
 Apply rate limiting on API endpoints to protect against brute force attacks.
+
+## Deployment Fundamentals  
+
+### 1. Using github actions
+
+Several steps are involved in general ci/cd
+
+1. Test coverage:- 
+
+Test coverage is the amount of code excueted during testing. It can determine how well a test suite covers the codebase and identify untested parts.
+There are different types of test coverage:
+
+- Line Coverage – Percentage of lines executed by tests.
+- Branch Coverage – Percentage of code branches (e.g., if conditions) executed.
+- Function Coverage – Percentage of functions or methods called by tests.
+- Statement Coverage – Percentage of executed statements in the code.
+
+What is an Acceptable Test Coverage?
+100% coverage is ideal but not always practical.
+
+Industry standards vary depending on the project:
+
+- Critical systems (finance, healthcare, aviation): 90-100%
+- General software applications: 70-90%
+- Startups and fast-moving projects: 50-70%
+- Legacy codebases: Often lower but improving it over time is key.
+
+TLDR - Test Coverage is basically checking If all code that can be excuted has been imported into the test and tested including the conditional blocks. loops and exceptions.
+
+2. We run code scanning using trivy or sonarcube to check code quality.
+
+- We use Trivy to scan Docker images for vulnerabilities and misconfigurations.
+- We use SonarQube to analyze code quality, detect code smells, and enforce best practices.
+
+4. We run the unit tests using Jest, Mocha etc.
+
+- Test reports are generated and stored as artifacts for review.
+- Test coverage is measured using Istanbul (NYC) for JavaScript
+- The pipeline enforces a minimum test coverage threshold to maintain code quality
+
+5. Build & Package Application
+
+- The application is built using Docker, producing versioned images.
+- Images are tagged with git commit hash and latest for traceability.
+- Build artifacts (JARs, binaries, or packaged apps) are stored in AWS S3, DigitalOcean Spaces, or Nexu
+
+6. Push to Container Registry
+
+- Docker images are pushed to DigitalOcean Container Registry (DOCR) or Amazon Elastic Container Registry (ECR).
+- The pipeline ensures that only verified and tested images are deployed.
+
+7. Deploy to Kubernetes (K8s) or Cloud Environment
+
+- Kubernetes manifests (.yaml files) are applied to update deployments.
+- Deployments use rolling updates to ensure zero downtime
+- Health checks and readiness probes are validated before routing traffic.
+
+8. Post-Deployment Checks & Monitoring
+
+- Logs and metrics are monitored using Prometheus & Grafana, Datagog or ELK Stack (Elasticsearch, Logstash, Kibana).
+- Smoke tests or API tests validate that the deployed app is functional.
+- Alerting mechanisms notify the team of issues in real-time.
+
+## USING GITOPS ( Like argoCD and fluxCD )
+
+1. Push Image to GitOps Repository
+
+- Instead of directly applying Kubernetes manifests, the pipeline updates a GitOps repository.
+- The kustomization.yaml or Helm values.yaml file is updated with the new image tag.
+
+2. GitOps Tool Deploys to Kubernetes
+
+- ArgoCD or FluxCD detects changes in the GitOps repository and syncs them with the cluster.
+- A rolling update is triggered, ensuring zero downtime.
+- The Git repository becomes the single source of truth for deployments.
