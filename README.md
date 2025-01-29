@@ -338,6 +338,8 @@ TLDR - Test Coverage is basically checking If all code that can be excuted has b
 
 ## USING GITOPS ( Like argoCD and fluxCD )
 
+FLUX VIDEO -> https://www.youtube.com/watch?v=X5W_706-jSY
+
 1. Push Image to GitOps Repository
 
 - Instead of directly applying Kubernetes manifests, the pipeline updates a GitOps repository.
