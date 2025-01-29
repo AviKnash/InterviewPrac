@@ -354,3 +354,11 @@ FLUX VIDEO -> https://www.youtube.com/watch?v=X5W_706-jSY
 ## Using runners
 
 We sometimes use Github runners to update the EC2 instance directly. The workflow updates, builds and update the repo in the machine and then we use pm2 to restart the service.
+
+## Nodejs Fundamentals 
+
+Sites:
+
+https://www.interviewbit.com/node-js-interview-questions/
+
+1. 
