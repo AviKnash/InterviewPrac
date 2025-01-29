@@ -418,5 +418,27 @@ We sometimes use Github runners to update the EC2 instance directly. The workflo
 Sites:
 
 https://www.interviewbit.com/node-js-interview-questions/
+https://www.youtube.com/watch?v=jxAXonX9Ao4&list=PL1BztTYDF-QPdTvgsjf8HOwO4ZVl_LhxS&index=29
 
-1. 
+### 1. NodeJs Event Loop
+
+NodeJS event loop helps Nodejs do async tasks while using Javascripts single threading functionality.
+
+1. Nodejs is basically the V8 engine plus LibUV which is written in C++ and is a library that allows the event loop.
+2. Event loop has phases:
+- Expires timers
+- I/O tasks and polling ( basically file reads and writes)
+- setImmediate callback
+- Closed events ( event closed)
+
+3. It also has the microtask queue which basically:
+
+- Resolved Promises (.then, .catch, .finally)
+- Async/Await Callbacks (After await)
+- MutationObserver Callbacks
+- process.nextTick (Node.js only, executed before other microtasks)
+
+4. The process.nextTick is executed :
+
+- Right after the current synchronous code. <b>setImmediate</b> run After the I/O phase, before next event loop cycle.
+- Execustion phase: Microtask Phase (before Promises!) . <b>setImmediate</b> : Check Phase (after I/O events, before setTimeout)
