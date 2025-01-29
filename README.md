@@ -182,6 +182,9 @@ useEffect(() => {
 
 ### 3. React Reconciliation Algorithm
 
+Sites:-
+https://www.toptal.com/react/interview-questions
+
 The React reconciliation algorithm determines how changes in the Virtual DOM are applied to the actual DOM efficiently.
 
 React maintains two Virtual DOMs: the current Virtual DOM and the updated Virtual DOM.
