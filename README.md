@@ -348,3 +348,7 @@ TLDR - Test Coverage is basically checking If all code that can be excuted has b
 - ArgoCD or FluxCD detects changes in the GitOps repository and syncs them with the cluster.
 - A rolling update is triggered, ensuring zero downtime.
 - The Git repository becomes the single source of truth for deployments.
+
+## Using runners
+
+We sometimes use Github runners to update the EC2 instance directly. The workflow updates, builds and update the repo in the machine and then we use pm2 to restart the service.
