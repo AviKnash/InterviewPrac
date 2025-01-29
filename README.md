@@ -277,6 +277,61 @@ Ensure role-based access control (RBAC) and Atttribute bases access control ( AB
    
 Apply rate limiting on API endpoints to protect against brute force attacks.
 
+### 9. Why is react important
+
+React uses JSX which allows us to write Javascript and HTMl in one component together. An important part of this is Babel which compiles this code down to pure javascript and then then node uses the V8 engine with JIT ( just in time compiler) to compile javascript to machine code.
+
+### 10. HOC ( Higher Order Component )
+
+A higher order component in React is basically a wrapper around a function that add's additional functionality to this function. For example useMemo is a HOC. Usually can use to add logging too. 
+
+Hooks have generlly replaced HOC's:
+
+1. Hooks allow you to manage state, side effects, and context in a much simpler way directly within the functional component. They keep logic close to where it's being used, making code easier to follow and maintain.
+2. With hooks, you can reuse logic without needing to wrap components. You can just call hooks inside your functional components, which leads to cleaner, more declarative code.
+3. Debugging is easier with hooks because the logic is contained inside the function component itself, making it more straightforward to trace issues. There's less boilerplate and fewer layers to navigate.
+4. HOCs were more commonly used in class-based components, but they still worked with functional components. However, they weren’t as natural or intuitive when using pure functions for React components.
+
+Example of HOC in class based:
+
+```jsx
+import React, { Component } from 'react';
+
+// HOC that adds a "count" prop to the wrapped component
+function withCounter(WrappedComponent) {
+  return class extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        count: 0,
+      };
+    }
+
+    componentDidMount() {
+      this.interval = setInterval(() => {
+        this.setState(prevState => ({ count: prevState.count + 1 }));
+      }, 1000);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval);
+    }
+
+    render() {
+      // Pass the "count" state as a prop to the WrappedComponent
+      return <WrappedComponent {...this.props} count={this.state.count} />;
+    }
+  };
+}
+```
+
+### 11. Debugging performance in React
+
+If a performance issue such as slow rendering is seen within a React app, the first step is to use the Profiler tool provided within the React Developer Tools browser plugin, which is available for Google Chrome and Mozilla Firefox. The Profiler tool allows developers to find components that take a long time to render or are rendering more frequently than necessary.
+
+### 12. StrictMode is a tool added in version 16.3 of React to highlight potential problems in an application. It performs additional checks on the application.
+
+
 ## Deployment Fundamentals  
 
 ### 1. Using github actions
