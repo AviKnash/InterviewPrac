@@ -457,3 +457,71 @@ NodeJS event loop helps Nodejs do async tasks while using Javascripts single thr
 
 - Right after the current synchronous code. <b>setImmediate</b> run After the I/O phase, before next event loop cycle.
 - Execustion phase: Microtask Phase (before Promises!) . <b>setImmediate</b> : Check Phase (after I/O events, before setTimeout)
+- 
+## Database Fundamentals
+
+Sites:
+https://techtfq.com/blog/top-20-sql-interview-questions
+
+1. 
+
+## Misc backend
+
+### 1. Cognito Auth
+
+Create a User Pool → Handles user sign-up/sign-in.
+Create an App Client → Allows your React app to authenticate users.
+
+Use AWS amplify sdk to sign in a user or sign up a user.
+
+1. Handling Session Expiry & Automatic Logout
+
+Cognito issues a session with access, refresh, and ID tokens. When a session expires:
+
+The app can refresh tokens automatically (if available).
+If the refresh token is also expired, force logout the user.
+Auto-Logout When Session Expires
+You can use Auth.currentSession() inside an useEffect hook to check if the session is valid.
+
+```jsx
+import { Auth } from 'aws-amplify';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function SessionMonitor() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        await Auth.currentSession(); // Checks if session is still valid
+      } catch (error) {
+        console.log("Session expired. Logging out...");
+        await Auth.signOut(); // Logout user
+        navigate('/login'); // Redirect to login page
+      }
+    };
+
+    const interval = setInterval(checkSession, 60000); // Check session every 1 min
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [navigate]);
+
+  return null;
+}
+
+export default SessionMonitor;
+```
+
+Cognito automatically handles refresh token using Auth.currentSession() or we can use the following code to get a new token manually.
+
+```jsx
+async function refreshToken() {
+  try {
+    const session = await Auth.currentSession();
+    const newToken = session.getAccessToken().getJwtToken();
+    console.log("Refreshed token:", newToken);
+  } catch (error) {
+    console.error("Session expired. Please log in again.");
+  }
+}
+```
