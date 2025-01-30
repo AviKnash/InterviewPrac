@@ -331,6 +331,21 @@ If a performance issue such as slow rendering is seen within a React app, the fi
 
 ### 12. StrictMode is a tool added in version 16.3 of React to highlight potential problems in an application. It performs additional checks on the application.
 
+### 13. SSR and CSR
+
+1. SSR is when the page is generated on the server and then sent to the client
+
+### 14. Performance improvements
+
+1. Pagination
+2. SSR
+3. Sending large files as gzip from api
+4. useMemo, useCallback, meme etc...
+5. Use lazy loading
+6. Use debounce for expensive operations
+7. Avoid unnecessary re-renders by splitting context into smaller, more focused providers instead of a single global context.
+8. Use React.lazy and dynamic imports to load components on demand.
+
 
 ## Deployment Fundamentals  
 
