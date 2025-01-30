@@ -428,6 +428,78 @@ FLUX VIDEO -> https://www.youtube.com/watch?v=X5W_706-jSY
 
 We sometimes use Github runners to update the EC2 instance directly. The workflow updates, builds and update the repo in the machine and then we use pm2 to restart the service.
 
+### ECS fargate 
+
+# Continuous Deployment (CD) with Amazon ECS and Fargate
+
+## 1. **Amazon ECS with Fargate + AWS CodePipeline + AWS CodeBuild**
+
+AWS provides a set of managed services that work seamlessly with ECS and Fargate for automating the CD process:
+
+### **AWS CodePipeline**:
+CodePipeline is a fully managed CI/CD service that automates the build, test, and deployment process. It can integrate with your ECS and Fargate setup, making it a common choice for deploying applications.
+
+### **AWS CodeBuild**:
+CodeBuild is a fully managed build service that compiles source code, runs tests, and produces deployable artifacts. You can use CodeBuild to build Docker images from your source code and push them to **Amazon ECR** (Elastic Container Registry).
+
+### **Amazon ECS**:
+Once the Docker image is built and stored in Amazon ECR, ECS can pull this image and deploy it to **Fargate**, which runs the containers.
+
+### **Typical Workflow**:
+1. **Source Stage**: CodePipeline monitors a source repository (e.g., **GitHub**, **CodeCommit**, or **S3**). When a new commit is pushed, the pipeline is triggered.
+2. **Build Stage**: AWS CodeBuild is triggered, and it builds a Docker image based on your source code. The image is pushed to **Amazon ECR**.
+3. **Deploy Stage**: The updated Docker image is deployed to ECS using **AWS CodeDeploy** or directly through ECS service updates. **Fargate** runs the containers in an ECS task.
+
+### **Benefits**:
+- Fully managed AWS services.
+- Integrated with ECS and Fargate for containerized deployments.
+- Easy to set up with automatic scaling and rolling updates.
+
+---
+
+## 2. **GitHub Actions + Amazon ECS + Fargate**
+
+If you're using **GitHub** for version control, you can use **GitHub Actions** to automate your CD pipeline:
+
+- **GitHub Actions** provides a workflow engine that can be configured to build, test, and deploy code to ECS/Fargate.
+- Use the `aws-actions/configure-aws-credentials` GitHub Action to authenticate with AWS, and then use ECS CLI or AWS SDKs to update ECS services with new Docker images.
+
+### **Example Workflow**:
+1. On each push to a branch (e.g., `main`), **GitHub Actions** triggers a build process.
+2. A **Docker image** is built and pushed to **Amazon ECR**.
+3. **GitHub Actions** uses the **AWS CLI** or **AWS SDK** to deploy the updated Docker image to **ECS/Fargate**.
+
+---
+
+## 3. **CircleCI + Amazon ECS + Fargate**
+
+**CircleCI** is another popular CI/CD service that can be used to automate the deployment of applications to ECS:
+
+### **Source Repository**:
+- CircleCI integrates with **GitHub** or **Bitbucket** to trigger a pipeline on code changes.
+  
+### **Build and Test**:
+- CircleCI can use **Docker** to build your container image and push it to **ECR**.
+
+### **Deployment**:
+- CircleCI can then deploy the image to **ECS** using **AWS CLI** or **AWS ECS deployment configurations**.
+
+---
+
+## 4. **Jenkins + Amazon ECS + Fargate**
+
+You can also use **Jenkins**, a popular open-source CI/CD tool, for automating deployments to ECS with Fargate:
+
+### **Source Repository**:
+- Jenkins can be configured to listen to changes in your Git repository.
+
+### **Build**:
+- Jenkins can use **Docker** to build the container image and push it to **ECR**.
+
+### **Deploy**:
+- Jenkins can deploy the Docker image to ECS using **AWS CLI**, the **ECS plugin for Jenkins**, or **AWS SDK**.
+
+
 ## Nodejs Fundamentals 
 
 Sites:
