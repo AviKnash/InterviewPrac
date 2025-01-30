@@ -8,10 +8,10 @@ A quick reference guide for concepts to prepare for interviews.
 
 ### 1. `let`, `const`, and `var` Scopes  
 - **`let` and `const`:**  
-  Block-scoped. Accessible only within the block `{}` where they are declared (e.g., within loops, if statements).  
+  Block-scoped. Accessible only within the block `{}` where they are declared (e.g., within loops, if statements). let and const are also hoisted but it's set as TDZ where the value is not accessible and will return a Reference Error if accessed before.
 
 - **`var`:**  
-  Function-scoped. Accessible throughout the function where it is declared, even outside blocks.
+  Function-scoped. Accessible throughout the function where it is declared, even outside blocks. var is initialized with undefined so it will return undefined If logged before a value is casted.
 
 ---
 
