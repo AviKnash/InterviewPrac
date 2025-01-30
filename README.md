@@ -529,7 +529,143 @@ NodeJS event loop helps Nodejs do async tasks while using Javascripts single thr
 
 - Right after the current synchronous code. <b>setImmediate</b> run After the I/O phase, before next event loop cycle.
 - Execustion phase: Microtask Phase (before Promises!) . <b>setImmediate</b> : Check Phase (after I/O events, before setTimeout)
-- 
+
+### 1. Nodejs worker threads, child_processes and clusters
+
+# Node.js Worker Threads, Child Processes, and Clusters
+
+## 1. Worker Threads
+Worker Threads in Node.js allow running JavaScript in parallel threads. They share memory with the main thread but run independently.
+
+### Usage
+```js
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+if (isMainThread) {
+  const worker = new Worker(__filename);
+  worker.on('message', (msg) => console.log(`Message from worker: ${msg}`));
+  worker.postMessage('Hello Worker');
+} else {
+  parentPort.on('message', (msg) => {
+    parentPort.postMessage(`Received: ${msg}`);
+  });
+}
+```
+
+## 2. Child Processes
+Child Processes allow running separate Node.js instances. They do not share memory but can communicate via IPC.
+
+```javascript
+const { fork } = require('child_process');
+
+const child = fork('child.js');
+child.on('message', (msg) => console.log(`From Child: ${msg}`));
+child.send('Hello Child');\
+```
+
+# Types of Child Processes in Node.js
+
+Node.js provides several ways to create child processes using the `child_process` module. The four main methods are:
+
+## 1. `exec()`
+`exec()` runs a command in a shell and buffers the output.
+
+### Usage:
+```js
+const { exec } = require('child_process');
+
+exec('ls -la', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    return;
+  }
+  console.log(`Output:\n${stdout}`);
+});
+```
+When to Use?
+Running shell commands
+When output size is small (since it buffers output)
+
+## 2 execFile()
+
+execFile() runs a binary or script without spawning a shell.
+
+```javascript
+const { execFile } = require('child_process');
+
+execFile('node', ['-v'], (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    return;
+  }
+  console.log(`Node Version: ${stdout}`);
+});
+```
+When to Use?
+When running an executable file (e.g., node, python, ffmpeg)
+More efficient than exec() as it avoids shell overhead
+
+## 3. spawn()
+
+spawn() launches a new process and streams its output in real-time.
+
+```javascript
+const { spawn } = require('child_process');
+
+const ls = spawn('ls', ['-la']);
+
+ls.stdout.on('data', (data) => {
+  console.log(`Output: ${data}`);
+});
+
+ls.stderr.on('data', (data) => {
+  console.error(`Error: ${data}`);
+});
+
+ls.on('close', (code) => {
+  console.log(`Process exited with code ${code}`);
+});
+```
+### 4. fork()
+
+fork() is a special case of spawn() that creates a new Node.js process and enables communication via IPC.
+
+```javascript
+const { fork } = require('child_process');
+
+const child = fork('child.js');
+
+child.on('message', (msg) => {
+  console.log(`From Child: ${msg}`);
+});
+
+child.send('Hello from Parent');
+```
+When to Use?
+Running separate Node.js scripts
+When inter-process communication (IPC) is needed
+
+### 3. Clusters
+
+Clusters allow running multiple instances of a Node.js server across CPU cores.
+
+```javascript
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('Hello World');
+  }).listen(8000);
+}
+```
+
 ## Database Fundamentals
 
 Sites:
