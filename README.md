@@ -733,3 +733,89 @@ async function refreshToken() {
   }
 }
 ```
+
+# Typescript Fundamentals
+
+### 1. Generics
+
+```
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+const result = identity<number>(42);
+```
+The function will return 42.
+
+Explanation:
+
+The <T> syntax defines a generic type parameter, allowing the function to work with multiple types.
+When calling identity<number>(42), T is replaced with number, making arg: number and returning number.
+The function becomes function identity(arg: number): number.
+
+### 2.  keyof and Mapped Types
+
+```
+type Person = {
+  name: string;
+  age: number;
+};
+
+type PersonKeys = keyof Person;
+let key: PersonKeys = "name"; 
+
+```
+Output: No error, because "name" is a valid key of Person.
+
+Explanation:
+
+keyof Person results in "name" | "age", meaning PersonKeys can only be "name" or "age".
+Assigning key = "name" is valid, but key = "gender" would cause an error
+
+### 3. Utility Types
+
+```
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const updateUser = (id: number, userData: ???) => {
+  // Update logic
+};
+```
+
+Examples: Partial, ReadOnly, Record.
+
+Explanation:
+
+Partial<T> makes all properties optional, so userData may contain id, name, email, or a subset of them.
+
+### 4. Readonly & Immutable Objects
+
+```
+interface Car {
+  brand: string;
+  year: number;
+}
+
+const myCar: Readonly<Car> = { brand: "Toyota", year: 2022 };
+myCar.year = 2023; // What happens here?
+
+```
+Error: "Cannot assign to 'year' because it is a read-only property."
+
+Explanation:
+
+Readonly<T> makes all properties immutable.
+myCar.year = 2023; is not allowed because year is read-only.
+
+### 5. Interface vs Type
+
+Feature	                          interface	       type
+Can be extended	                     ✅ (extends)	  ✅ (& operator)
+Can be implemented by classes        ✅	            ❌
+Can define unions/intersections	     ❌	            ✅
+Can be merged (declaration merging)	 ✅	            ❌
+
