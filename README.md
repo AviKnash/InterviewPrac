@@ -145,6 +145,8 @@ console.log(name, age); // Outputs: Alice, 25
 
 ## React Fundamentals  
 
+React advnaced concepts site -> https://www.youtube.com/watch?v=qTDnwmMF5q8&list=PL6dw1BPCcLC4n-4o-t1kQZH0NJeZtpmGp
+
 ### 1. All Hooks
 
 React provides several hooks that enable the use of state, lifecycle methods, and context in functional components. Common hooks include:
