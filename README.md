@@ -736,6 +736,9 @@ async function refreshToken() {
 
 ### 2. Auth with JWT and session
 
+Site:- 
+JWT and Session: https://www.youtube.com/watch?v=fyTxwIa-1U0
+
 1. JWT signing is usually done with HMAC, RSA or ECDSA.
 2. HMAC is a symetric signing token basically same key is used to sign and check the token
 3. RSA and ECDSA are assymetric. They have a private key to sign the token and public key to verify it. Making it more secure.
