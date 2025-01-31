@@ -348,6 +348,9 @@ If a performance issue such as slow rendering is seen within a React app, the fi
 7. Avoid unnecessary re-renders by splitting context into smaller, more focused providers instead of a single global context.
 8. Use React.lazy and dynamic imports to load components on demand.
 
+### 14. Portals
+
+React.createPortal() is generally used to overaly a component and pass it through. THis is usually used for Modals or dialog boxes.
 
 ## Deployment Fundamentals  
 
