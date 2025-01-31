@@ -741,6 +741,15 @@ async function refreshToken() {
 3. RSA and ECDSA are assymetric. They have a private key to sign the token and public key to verify it. Making it more secure.
 4. JWT tokens are checked in the middleware usually.
 
+### 3. Refresh tokens and session tokens
+
+It's awlways better to use short lived session tokens and long lived refresh tokens in case the token gets stolen. Try using:-
+
+1. HttpOnly Cookies (Best Practice)
+2. 
+- HttpOnly cookies are not accessible to JavaScript running in the browser, which prevents cross-site scripting (XSS) attacks from stealing the refresh token.
+- The token is sent with each request automatically by the browser, making it easy to handle in authenticated routes.
+
 # Typescript Fundamentals
 
 ### 1. Generics
