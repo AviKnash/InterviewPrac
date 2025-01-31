@@ -734,6 +734,13 @@ async function refreshToken() {
 }
 ```
 
+### 2. Auth with JWT and session
+
+1. JWT signing is usually done with HMAC, RSA or ECDSA.
+2. HMAC is a symetric signing token basically same key is used to sign and check the token
+3. RSA and ECDSA are assymetric. They have a private key to sign the token and public key to verify it. Making it more secure.
+4. JWT tokens are checked in the middleware usually.
+
 # Typescript Fundamentals
 
 ### 1. Generics
