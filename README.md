@@ -844,3 +844,58 @@ Can be implemented by classes        ✅	            ❌
 Can define unions/intersections	     ❌	            ✅
 Can be merged (declaration merging)	 ✅	            ❌
 
+# Architectural Design Patterns
+
+# Architectural Design Patterns
+
+Architectural design patterns help define the structure and organization of software applications. Here are some common ones:
+
+## 1. Layered Architecture (N-Tier)
+**Description**: Organizes an application into layers with distinct responsibilities (e.g., Presentation, Business Logic, Data Access).  
+**Use Cases**: Enterprise applications, MVC (Model-View-Controller) frameworks.
+
+## 2. Microservices Architecture
+**Description**: Breaks an application into small, loosely coupled services that communicate via APIs.  
+**Use Cases**: Scalable web applications, cloud-based systems.
+
+## 3. Monolithic Architecture
+**Description**: A single, unified application where all components are tightly integrated.  
+**Use Cases**: Simple applications, startups, internal tools.
+
+## 4. Event-Driven Architecture
+**Description**: Uses events to trigger and communicate between services asynchronously.  
+**Use Cases**: Real-time applications, IoT systems, complex workflows.
+
+## 5. Serverless Architecture
+**Description**: Applications run on managed cloud services, scaling automatically without managing infrastructure.  
+**Use Cases**: APIs, background jobs, and lightweight cloud-based applications.
+
+## 6. Microkernel Architecture (Plugin-Based)
+**Description**: A core system with optional plugins/modules for extensibility.  
+**Use Cases**: IDEs (e.g., VS Code), workflow engines, extensible software.
+
+## 7. Model-View-Controller (MVC)
+**Description**: Separates application logic into Model (data), View (UI), and Controller (business logic).  
+**Use Cases**: Web frameworks like React, Angular, Django, and Rails.
+
+## 8. Model-View-ViewModel (MVVM)
+**Description**: Similar to MVC, but uses a ViewModel to handle UI logic and data binding.  
+**Use Cases**: Frontend frameworks like Angular and React with state management.
+
+## 9. Hexagonal Architecture (Ports and Adapters)
+**Description**: Decouples the core business logic from external dependencies via interfaces.  
+**Use Cases**: Applications needing high testability and maintainability.
+
+## 10. CQRS (Command Query Responsibility Segregation)
+**Description**: Separates read and write operations to optimize performance and scalability.  
+**Use Cases**: High-performance data processing systems.
+
+## 11. Event Sourcing
+**Description**: Stores application state as a sequence of events rather than a current state.  
+**Use Cases**: Banking, auditing, and systems requiring a full history of changes.
+
+## 12. Pipeline Architecture
+**Description**: Processes data through a series of stages or filters.  
+**Use Cases**: Data processing, ETL (Extract, Transform, Load) pipelines.
+
+
