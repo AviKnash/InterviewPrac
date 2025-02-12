@@ -143,6 +143,10 @@ const { name, age } = { name: "Alice", age: 25 };
 console.log(name, age); // Outputs: Alice, 25
 ```
 
+### 9. All ES6 features ( V Important )
+
+Check this site: https://www.geeksforgeeks.org/introduction-to-es6/
+
 ## React Fundamentals  
 
 React advnaced concepts site -> https://www.youtube.com/watch?v=qTDnwmMF5q8&list=PL6dw1BPCcLC4n-4o-t1kQZH0NJeZtpmGp
