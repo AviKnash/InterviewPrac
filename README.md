@@ -846,8 +846,6 @@ Can be merged (declaration merging)	 ✅	            ❌
 
 # Architectural Design Patterns
 
-# Architectural Design Patterns
-
 Architectural design patterns help define the structure and organization of software applications. Here are some common ones:
 
 ## 1. Layered Architecture (N-Tier)
@@ -897,5 +895,11 @@ Architectural design patterns help define the structure and organization of soft
 ## 12. Pipeline Architecture
 **Description**: Processes data through a series of stages or filters.  
 **Use Cases**: Data processing, ETL (Extract, Transform, Load) pipelines.
+
+# Cloud Design Patterns
+
+Refer these -> 
+Azure has the best set - https://learn.microsoft.com/en-us/azure/architecture/patterns/
+AWS for AWS specific ones' - https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/introduction.html
 
 
