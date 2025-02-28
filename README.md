@@ -906,4 +906,7 @@ Refer these ->
 Azure has the best set - https://learn.microsoft.com/en-us/azure/architecture/patterns/
 AWS for AWS specific ones' - https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/introduction.html
 
+# Kubernates
 
+Videos: 
+- https://www.youtube.com/watch?v=X48VuDVv0do
